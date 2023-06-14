@@ -1,0 +1,7 @@
+dist/
+!vanilla-data-binding/dist/
+
+node_modules/
+.DS_Store
+
+.vscode/

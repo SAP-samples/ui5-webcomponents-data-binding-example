@@ -1,0 +1,10 @@
+{
+    "compilerOptions": {
+        "moduleResolution": "nodenext",
+        "outDir": "./dist",
+        "allowJs": true,
+        "target": "ES6",
+        "declaration": true
+    },
+    "include": ["./src/index.js"],
+}

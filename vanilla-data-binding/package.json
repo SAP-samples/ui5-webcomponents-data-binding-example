@@ -1,0 +1,21 @@
+{
+  "name": "vanilla-data-binding",
+  "version": "0.1.3",
+  "author": "nicoschoenteich",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SAP-samples/ui5-webcomponents-data-binding-example/tree/main/vanilla-data-binding"
+  },
+  "bugs": {
+    "url": "https://github.com/SAP-samples/ui5-webcomponents-data-binding-example/issues"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc --build",
+    "dev": "tsc --watch"
+  },
+  "devDependencies": {
+    "typescript": "^5"
+  }
+}
