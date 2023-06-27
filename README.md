@@ -1,36 +1,29 @@
-# SAP-samples/repository-template
-This default template for SAP Samples repositories includes files for README, LICENSE, and .reuse/dep5. All repositories on github.com/SAP-samples will be created based on this template.
+[![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/ui5-webcomponents-data-binding-example)](https://api.reuse.software/info/github.com/SAP-samples/ui5-webcomponents-data-binding-example)
 
-# Containing Files
+# UI5 Web Components Data Binding Example
 
-1. The LICENSE file:
-In most cases, the license for SAP sample projects is `Apache 2.0`.
+The repository contains a sample application that uses the UI5 Web Components in a very lightweight and performant way. Additionally, the application shows how to implement data binding with UI5 Web Components, which is a feature that is usually only available when using the more heavyweight UI5 framework. This showcases the power, flexibility, compatibility and ease of use of the UI5 Web Components.
 
-2. The .reuse/dep5 file: 
-The [Reuse Tool](https://reuse.software/) must be used for your samples project. You can find the .reuse/dep5 in the project initial. Please replace the parts inside the single angle quotation marks < > by the specific information for your repository.
+## Overview
 
-3. The README.md file (this file):
-Please edit this file as it is the primary description file for your project. You can find some placeholder titles for sections below.
 
-# [Title]
-<!-- Please include descriptive title -->
 
-<!--- Register repository https://api.reuse.software/register, then add REUSE badge:
-[![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/REPO-NAME)](https://api.reuse.software/info/github.com/SAP-samples/REPO-NAME)
--->
-
-## Description
-<!-- Please include SEO-friendly description -->
+For more information visit the [vanilla-data-binding](/vanilla-data-binding/README.md) section.
 
 ## Requirements
 
+[Node.js](https://nodejs.org/en/download) version 16 or higher is required to run this project.
+
 ## Download and Installation
 
-## Known Issues
-<!-- You may simply state "No known issues. -->
+1. Clone this repository (or a forked version of it).
+1. In the project's root directory, run `npm install`.
+1. To start the dev server, run `npm run dev`.
+1. To build the project, run `npm run build`.
+1. To serve the static build result, run `npm run serve:dist`.
 
-## How to obtain support
-[Create an issue](https://github.com/SAP-samples/<repository-name>/issues) in this repository if you find a bug or have questions about the content.
+## Support
+[Create an issue](https://github.com/SAP-samples/ui5-webcomponents-data-binding-example/issues) in this repository if you find a bug or have questions about the content.
  
 For additional support, [ask a question in SAP Community](https://answers.sap.com/questions/ask.html).
 
