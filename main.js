@@ -1,24 +1,19 @@
 import { i18nModel, JSONModel } from "./vanilla-data-binding/src/index.js"
 
 import "@ui5/webcomponents-fiori/dist/ShellBar"
-
 import "@ui5/webcomponents/dist/Panel.js"
-
 import "@ui5/webcomponents/dist/List.js"
 import "@ui5/webcomponents/dist/StandardListItem.js" 
-
 import "@ui5/webcomponents/dist/Label.js"
 import "@ui5/webcomponents/dist/Input.js"
-
 import "@ui5/webcomponents/dist/Button.js"
-
 import "@ui5/webcomponents/dist/Table.js";
 import "@ui5/webcomponents/dist/TableColumn.js";
 import "@ui5/webcomponents/dist/TableRow.js";
 import "@ui5/webcomponents/dist/TableCell.js";
 
 const init = async () => {
-	const i18n = new i18nModel(true)
+	const i18n = new i18nModel(true) // set to true so we can await the init
 	await i18n.initialize()
 
 	const data = {

@@ -2,13 +2,17 @@
 
 # UI5 Web Components Data Binding Example
 
-The repository contains a sample application that uses the UI5 Web Components in a very lightweight and performant way. Additionally, the application shows how to implement data binding with UI5 Web Components, which is a feature that is usually only available when using the more heavyweight UI5 framework. This showcases the power, flexibility, compatibility and ease of use of the UI5 Web Components.
+The repository contains a sample application that uses the UI5 Web Components in a very lightweight and performant way. Additionally, the application shows how to [implement data binding](/vanilla-data-binding/) with UI5 Web Components, which is a feature that is usually only available when using the more heavyweight UI5 framework. This showcases the power, flexibility, compatibility and ease of use of the UI5 Web Components.
 
 ## Overview
 
+The application in this repository is a simple list of products with a few interactive buttons. The application has similarities to the [SAP Fiori list report](https://experience.sap.com/fiori-design-web/list-report-floorplan-sap-fiori-element/).
 
+![screen shot](/application.png)
 
-For more information visit the [vanilla-data-binding](/vanilla-data-binding/README.md) section.
+The application does not use any framework, instead it runs on [vite](https://vitejs.dev/) and uses the [UI5 Web Components](https://sap.github.io/ui5-webcomponents/). This makes the application very lightweight and performant - reaching a lighthouse performance score of 99.
+
+[Data binding](https://sapui5.hana.ondemand.com/sdk/#/topic/68b9644a253741e8a4b9e4279a35c247) is a much beloved feature of the UI5 framework, which the application in this repository does not use. To achieve a somewhat similar developer experience, the application implements a custom data binding - including list bindings, property bindings and i18n (internationalization). For more information visit the [vanilla-data-binding](/vanilla-data-binding/) section.
 
 ## Requirements
 
