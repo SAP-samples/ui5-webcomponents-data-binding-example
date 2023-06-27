@@ -12,7 +12,7 @@ Property bindings bind a specific value from the data in the model to a element 
 
 By default, property bindings bind a value in the data model to the `textContent` attribute of an HTML element. Omitting the attribute that is to be set therefore gives the same result as specifying it as `textContent`:
 ```html
-<!--These two examples give the same result:-->
+<!-- These two examples give the same result: -->
 
 <h1 data-bind-property="nameOfModel>path/to/value>textContent"></h1>
 
@@ -26,7 +26,10 @@ You can also bind properties to any other attribute of an HTML element:
 
 Or you can specify multiple property bindings for one HTML element using an array-like syntax:
 ```html
-<input data-bind-property="[nameOfModel>path/to/value>value, nameOfModel>path/to/anotherValue>placeholder]"></input>
+<input data-bind-property="[
+        nameOfModel>path/to/value>value,
+        nameOfModel>path/to/anotherValue>placeholder
+    ]"></input>
 ```
 
 ## List Bindings
@@ -74,7 +77,7 @@ A list binding can be used in combination with property bindings:
 
 In contrast to JSONModels, an i18nModel ("internationalization" model) is a data model consisting of simple key-value pairs that doesn't allow for any nested structure. It can therefore only be used for property bindings. It's specialty is that you can provide multiple datasets that represent translations for different languages. Based on the language set via the URL query parameter (e.g. `?language=de` for German) or the user's browser settings, the corresponding translations will be used for the model. The URL query parameter overrules the browser settings. The translations can be provided by creating files following the naming `i18n/i18n_de.properties` (for German). They will then automatically be picked up by the i18nModel. The file containing the default translations must be called `i18n/i18n.properties` (language code omitted).
 
-> Do not provide a model name when creating an i18nModel - simply do `new i18nModel()`. i18nModels are always automatically named `i18n`.
+> ⚠️ Do not provide a model name when creating an i18nModel - simply do `new i18nModel()`. i18nModels are always automatically named `i18n`.
 
 Create an i18nModel like this:
 ```javascript
