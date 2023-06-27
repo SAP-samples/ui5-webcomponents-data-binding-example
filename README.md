@@ -12,7 +12,7 @@ The application in this repository is a simple list of products with a few inter
 
 The application does not use any framework, instead it runs on [vite](https://vitejs.dev/) and uses the [UI5 Web Components](https://sap.github.io/ui5-webcomponents/). This makes the application very lightweight and performant - reaching a lighthouse performance score of 99.
 
-[Data binding](https://sapui5.hana.ondemand.com/sdk/#/topic/68b9644a253741e8a4b9e4279a35c247) is a much beloved feature of the UI5 framework, which the application in this repository does not use. To achieve a somewhat similar developer experience, the application implements a custom data binding - including list bindings, property bindings and i18n (internationalization). For more information visit the [vanilla-data-binding](/vanilla-data-binding/) section.
+[Data binding](https://sapui5.hana.ondemand.com/sdk/#/topic/68b9644a253741e8a4b9e4279a35c247) is a much beloved feature of the UI5 framework, which the application in this repository does not use. To achieve a somewhat similar developer experience, the application implements custom data binding - including list bindings, property bindings and i18n (internationalization). For more information visit the [vanilla-data-binding](/vanilla-data-binding/) section.
 
 ## Requirements
 
@@ -23,6 +23,9 @@ The application does not use any framework, instead it runs on [vite](https://vi
 1. Clone this repository (or a forked version of it).
 1. In the project's root directory, run `npm install`.
 1. To start the dev server, run `npm run dev`.
+
+The best performance can be achieved when the project gets built:
+
 1. To build the project, run `npm run build`.
 1. To serve the static build result, run `npm run serve:dist`.
 
