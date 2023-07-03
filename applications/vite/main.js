@@ -29,23 +29,21 @@ const init = async () => {
 	
 	const model = new JSONModel("supermarket", data)
 
+	const fcl = document.querySelector("#fcl")
+	const openMidColumn = (e) => {
+		fcl.layout = "TwoColumnsMidExpanded"
+		const boundData = model.getBoundData(e.target)
+		model.setProperty("context", boundData)
+	}
+
 	document.querySelector("#change-button").addEventListener("click", (e) => {
 		let apples = i18n.data["Apples"]
 		apples = apples.replace("🍎", "🍏")
 		model.setProperty("products/2/name", apples)
 	})
 
-	const fcl = document.querySelector("#fcl")
-	const openMidColumn = (e) => {
-		fcl.layout = "TwoColumnsMidExpanded"
-		const listItem = e.target.closest(".list-item")
-		const index = Array.from(listItem.parentNode.children).indexOf(listItem)
-		console.log(model.data.products[index])
-		model.setProperty("context", model.data.products[index])
-	}
-	
 	document.querySelector("#add-button").addEventListener("click", (e) => {
-		const newNode = model.appendListItem("products", { name: i18n.data.Apples, quantity: 3 })
+		const newNode = model.appendListItem("products", { name: i18n.data.Apples, quantity: 4 })
 		newNode.addEventListener("click", openMidColumn)
 	})
 

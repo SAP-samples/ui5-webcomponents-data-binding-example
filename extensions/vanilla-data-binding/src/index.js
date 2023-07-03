@@ -49,12 +49,12 @@ class Model {
                     const newIndex = boundElementInsideList.children.length
                     newNode = boundElementInsideList.firstElementChild.cloneNode(true)
                     boundElementInsideList.appendChild(newNode)
-                    Array.from(newNode.children).forEach(child => {
-                        const boundPath = child.dataset[`boundPaths${this.capitalizedName}`]
+                    newNode.querySelectorAll(`[data-bound-paths-${this.name}]`).forEach(element => {
+                        const boundPath = element.dataset[`boundPaths${this.capitalizedName}`]
                         if (boundPath) {
-                            child.dataset[`boundPaths${this.capitalizedName}`] = this.#replaceLastOccurrenceOfNumber(boundPath, (newIndex - 1), newIndex)
-                            this.subscribers.property.push(child)
-                            this.#addPossibleTwoWayBinding(child)
+                            element.dataset[`boundPaths${this.capitalizedName}`] = this.#replaceLastOccurrenceOfNumber(boundPath, 0, newIndex)
+                            this.subscribers.property.push(element)
+                            this.#addPossibleTwoWayBinding(element)
                         }
                     })
                     this.setProperty(`${property}/${newIndex}`, data)
@@ -109,6 +109,37 @@ class Model {
         }
         
         this.#updateSubscribers()
+    }
+
+    /**
+     * Gets the bound data of an item inside a list binding.
+     * @param {HTMLElement} The element that is inside a list binding. 
+     * @returns {object} the bound data object
+     */
+    getBoundData(element) {
+        let elementWithPath
+        while (!elementWithPath) {
+            elementWithPath = element.querySelector(`[data-bound-paths-${this.name}]`)
+            element = element.parentNode
+        }
+        const fullPropertyPath = elementWithPath.dataset[`boundPaths${this.capitalizedName}`]
+        const pathContainsNumber = /\/\d+\//.test(fullPropertyPath)
+        if (!pathContainsNumber) {
+            console.error(`The getBoundData() method should only be called for items inside a list binding. This relates to the "${this.name}" data model.`)
+            return
+        }        
+        let lastCharacterIsNumber
+        let relevantPropertyString = fullPropertyPath
+        while (!lastCharacterIsNumber) {
+            relevantPropertyString = relevantPropertyString.split("/").slice(0, -1).join("/")
+            lastCharacterIsNumber = /^\d$/.test(relevantPropertyString.charAt(relevantPropertyString.length - 1))
+        }
+        let relevantPropertyArray = relevantPropertyString.split("/")
+        let boundData = this.data
+        for (let i = 0; i < relevantPropertyArray.length ; i++) {
+            boundData = boundData[relevantPropertyArray[i]]
+        }
+        return boundData
     }
 
     /**
