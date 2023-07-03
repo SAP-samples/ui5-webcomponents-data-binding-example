@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Example</title>
+</head>
+
+<body>
+
+    <ui5-flexible-column-layout id="fcl">
+        <div class="column" slot="startColumn">
+
+            <ui5-shellbar data-bind-property="supermarket>name>primaryTitle">
+                <!-- <img slot="logo" src="/sap.png"/> -->
+            </ui5-shellbar>
+
+            <div id="list-header">
+                <ui5-button id="change-button" data-bind-property="i18n>ChangeAppleColor">
+                </ui5-button>
+
+                <ui5-button id="add-button" data-bind-property="i18n>AddItemToList">
+                </ui5-button>
+            </div>
+
+            <ui5-table data-bind-list="supermarket>products">
+
+                <ui5-table-row type="Active" class="list-item">
+
+                    <ui5-table-cell>
+                        <span data-bind-property="supermarket>name"></span>
+                    </ui5-table-cell>
+
+                    <ui5-table-cell style="text-align: right">
+                        <span data-bind-property="supermarket>quantity"></span>
+                    </ui5-table-cell>
+
+                    <ui5-table-cell style="text-align: right">
+                        <ui5-icon name="navigation-right-arrow"></ui5-icon>
+                    </ui5-table-cell>
+
+                </ui5-table-row>
+
+                <ui5-table-column slot="columns">
+                    <span data-bind-property="i18n>Products" data-bind-list-ignore="true"></span>
+                </ui5-table-column>
+
+                <ui5-table-column slot="columns" class="list-header-text-alignment">
+                    <span data-bind-property="i18n>Quantity" data-bind-list-ignore="true"></span>
+                </ui5-table-column>
+
+                <ui5-table-column slot="columns" data-bind-list-ignore="true"></ui5-table-column>
+            </ui5-table>
+
+        </div>
+        <div class="column" slot="midColumn">
+            <div class="column-header">
+                <div class="column-subheader">
+                    <ui5-button id="openMidColumn" design="Transparent" icon="full-screen"></ui5-button>
+                    <ui5-button id="closeMidColumn" design="Transparent" icon="decline"></ui5-button>
+                </div>
+                <ui5-title style="font-size: var(--sapObjectHeader_Title_FontSize);" data-bind-property="supermarket>context/name"></ui5-title>
+            </div>
+
+
+            <div class="title-wrapper">
+                <ui5-title level="H4" data-bind-property="i18n>GeneralInformation"></ui5-title>
+            </div>
+            <div class="facet-wrapper">
+                <div>
+                    <ui5-label data-bind-property="i18n>Quantity"></ui5-label>
+                </div>
+                <span data-bind-property="supermarket>context/quantity"></span>
+            </div>
+        </div>
+    </ui5-flexible-column-layout>
+    <script type="module" src="/main.js"></script>
+
+</body>
+
+<style>
+    body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+        background-color: var(--sapBackgroundColor);
+    }
+
+    #fcl {
+        height: 100vh;
+        width: 100vw;
+    }
+
+    .column {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #list-header {
+        width: calc(100% - 2rem);
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        margin-top: 2rem;
+        margin-bottom: .5rem;
+    }
+
+    ui5-table {
+        width: calc(100% - 2rem);
+    }
+
+    ui5-table ui5-table-column.list-header-text-alignment::part(column) {
+        text-align: end;
+    }
+
+    .column-header {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 0.25rem 1rem 0.25rem 1rem;
+        margin-bottom: 2rem;
+        background: var(--sapList_Background);
+        box-sizing: border-box;
+    }
+
+    .column-subheader {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .title-wrapper {
+        width: calc(100% - 2rem);
+        padding: 1rem;
+    }
+
+    .facet-wrapper {
+        width: calc(100% - 4rem);
+        background-color: var(--sapGroup_TitleBackground);
+        border-radius: 12px;
+        padding: 2rem 1rem 2rem 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: .25rem;
+    }
+
+    .facet-wrapper span {
+        color: var(--sapTextColor);
+        font-family: var(--sapFontFamily);
+    }
+</style>
+
+</html>

@@ -35,9 +35,10 @@ class Model {
      * WARNING: Does not work for lists where the parent list element is bound to more than one property or list of this model.
      * @param {string} property  - The property path in the model pointing to the list.
      * @param {object} data - The data to attach to the list.
-     * @returns {object} the updated data object.
+     * @returns {HTMLElement} the newly appended list item node.
      */
     appendListItem(property, data) {
+        let newNode
         for (let i = 0; i < this.subscribers.list.length; i++) {
             const element = this.subscribers.list[i]
             let allSubscribersAndChildren = Array.from(element.querySelectorAll(`[data-bound-paths-${this.name}]`))
@@ -46,7 +47,7 @@ class Model {
                 const boundPath = boundElementInsideList.dataset[`boundPaths${this.capitalizedName}`]
                 if (boundPath == property) {
                     const newIndex = boundElementInsideList.children.length
-                    const newNode = boundElementInsideList.lastElementChild.cloneNode(true)
+                    newNode = boundElementInsideList.firstElementChild.cloneNode(true)
                     boundElementInsideList.appendChild(newNode)
                     Array.from(newNode.children).forEach(child => {
                         const boundPath = child.dataset[`boundPaths${this.capitalizedName}`]
@@ -60,7 +61,7 @@ class Model {
                 }
             })
         }
-        return this.data
+        return newNode
     }
 
     /**
@@ -123,7 +124,8 @@ class Model {
         const listData = this.#getDataToSetOnElement(element, 0)
         for (let i = 0; i < listData.length; i++) {
             const newNode = firstChild.cloneNode(true)
-            element.appendChild(newNode)
+            // element.appendChild(newNode)
+            firstChild.parentNode.insertBefore(newNode, firstChild.nextSibling);
             
             const nestedLists = element.lastElementChild.querySelectorAll("[data-bind-list]")
             nestedLists.forEach(nestedList => {
@@ -216,7 +218,8 @@ class Model {
         let propertyPath = this.#parseDatasetAttribute(element, bindingType)[pathIndex][1]
         const closestElementWithListBinding = element.parentElement.closest("[data-bind-list]")
         const parentHasListBinding = closestElementWithListBinding && closestElementWithListBinding != element
-        if (parentHasListBinding) {
+        const ignoreItem = element.dataset[`bindListIgnore`]
+        if (parentHasListBinding && !ignoreItem) {
             let propertyArray = []
             propertyArray.push(propertyPath)
             
