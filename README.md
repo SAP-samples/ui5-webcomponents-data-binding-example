@@ -2,7 +2,7 @@
 
 # UI5 Web Components Data Binding Example
 
-This repository contains two sample applications that use the [UI5 Web Components](https://sap.github.io/ui5-webcomponents/) in a very lightweight and performant way. Additionally, they show how to implement **data binding** with UI5 Web Components using
+This repository contains two sample applications that use the [UI5 Web Components](https://sap.github.io/ui5-webcomponents/) in a very lightweight and performant way. While taking an as-lightweight-as-possible approach is great for performance, user and developer experience are just as important. To satisfy those needs, the application additionally show how to implement **data binding** with UI5 Web Components using
 
 1. [a custom approach](/extensions/vanilla-data-binding/) (see [vite application](#vite-application))
 2. [the Vue framework](https://vuejs.org/guide/essentials/template-syntax.html) (see [vue application](#vue-application)).

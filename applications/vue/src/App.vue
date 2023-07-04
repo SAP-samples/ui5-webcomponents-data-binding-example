@@ -13,7 +13,6 @@ import "@ui5/webcomponents-icons/dist/full-screen";
 import "@ui5/webcomponents-icons/dist/exit-full-screen";
 import "@ui5/webcomponents-icons/dist/navigation-right-arrow";
 
-
 import "@ui5/webcomponents/dist/Assets.js"
 import "@ui5/webcomponents/dist/generated/json-imports/Themes.js"
 import "@ui5/webcomponents-fiori/dist/generated/json-imports/Themes.js"
