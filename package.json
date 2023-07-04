@@ -12,7 +12,9 @@
         "clean": "npm run clean --workspaces --if-present",
         "build": "npm run build --workspaces --if-present",
         "vite": "npm run dev -w=vite-application",
-        "vite:dist": "npm run serve:dist -w=vite-application"
+        "vite:dist": "npm run serve:dist -w=vite-application",
+        "vue": "npm run dev -w=vue-application",
+        "vue:dist": "npm run serve:dist -w=vue-application"
     },
     "workspaces": [
         "packages/*",

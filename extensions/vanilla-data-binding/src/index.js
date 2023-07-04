@@ -123,6 +123,7 @@ class Model {
             element = element.parentNode
         }
         const fullPropertyPath = elementWithPath.dataset[`boundPaths${this.capitalizedName}`]
+        // check that element has one or more digits inside slashes --> list binding
         const pathContainsNumber = /\/\d+\//.test(fullPropertyPath)
         if (!pathContainsNumber) {
             console.error(`The getBoundData() method should only be called for items inside a list binding. This relates to the "${this.name}" data model.`)

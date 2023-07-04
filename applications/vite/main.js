@@ -61,8 +61,11 @@ const init = async () => {
 		} else {
 			fcl.layout = "MidColumnFullScreen"
 			e.target.icon = "exit-full-screen"
-		}
-		
+		}	
+	})
+
+	document.querySelector("#bar").addEventListener("click", (e) => {
+		console.log(model.getBoundData(e.target))
 	})
 }
 init()
