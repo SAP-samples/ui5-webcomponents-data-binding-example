@@ -10,6 +10,9 @@ import "@ui5/webcomponents/dist/TableColumn.js";
 import "@ui5/webcomponents/dist/TableRow.js";
 import "@ui5/webcomponents/dist/TableCell.js";
 
+import "@ui5/webcomponents/dist/Tree.js";
+import "@ui5/webcomponents/dist/TreeItem.js";
+
 import "@ui5/webcomponents-icons/dist/full-screen";
 import "@ui5/webcomponents-icons/dist/exit-full-screen";
 import "@ui5/webcomponents-icons/dist/navigation-right-arrow";
@@ -18,16 +21,38 @@ const init = async () => {
 	const i18n = new i18nModel(true) // set to true so we can await the init
 	await i18n.initialize()
 
-	const data = {
-		name: "Supermarket123 🛒 ",
-		products: [
-			{ name: i18n.data.VanillaIceCream, quantity: 100 },
-			{ name: i18n.data.Bananas, quantity: 8 },
-			{ name: i18n.data.Apples, quantity: 3 }
+	 const data = {
+	 	name: "Supermarket123 🛒 ",
+	 	products: [
+	 		{ name: i18n.data.VanillaIceCream, quantity: 100 },
+	 		{ name: i18n.data.Bananas, quantity: 8 },
+	 		{ name: i18n.data.Apples, quantity: 3 }
+	 	]
+	 }
+
+	const tree = {
+		children: [
+			{
+				text: "Tree 1",
+				children: [
+					{
+						text: "Tree 1.1",
+						children: [
+							{ text: "Tree 1.1.1" },
+							{ text: "Tree 1.1.2" }
+						]
+					}
+				]
+			},
+			{
+				text: "Tree 2"
+			}
 		]
 	}
 	
-	const model = new JSONModel("supermarket", data)
+	const treeModel = new JSONModel("tree", tree)
+	
+	// const model = new JSONModel("supermarket", data)
 
 	const fcl = document.querySelector("#fcl")
 	const openMidColumn = (e) => {

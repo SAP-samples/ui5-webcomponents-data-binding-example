@@ -48,8 +48,8 @@ class Model {
                 if (boundPath == property) {
                     const newIndex = boundElementInsideList.children.length
                     newNode = boundElementInsideList.firstElementChild.cloneNode(true)
-                    boundElementInsideList.appendChild(newNode)
-                    newNode.querySelectorAll(`[data-bound-paths-${this.name}]`).forEach(element => {
+					const newNodeAndAllItsChildren = [newNode, ...newNode.querySelectorAll(`[data-bound-paths-${this.name}]`)]
+					newNodeAndAllItsChildren.forEach(element => {
                         const boundPath = element.dataset[`boundPaths${this.capitalizedName}`]
                         if (boundPath) {
                             element.dataset[`boundPaths${this.capitalizedName}`] = this.#replaceLastOccurrenceOfNumber(boundPath, 0, newIndex)
@@ -57,6 +57,7 @@ class Model {
                             this.#addPossibleTwoWayBinding(element)
                         }
                     })
+                    boundElementInsideList.appendChild(newNode)
                     this.setProperty(`${property}/${newIndex}`, data)
                 }
             })
@@ -105,6 +106,7 @@ class Model {
             for (let i = 0; i < this.subscribers.list.length; i++) {
                 const element = this.subscribers.list[i]
                 this.#handleCloningOfListElements(element)
+                // element.dataset[`boundPaths${this.capitalizedName}`] = this.#getFullPropertyPath(element, bindingType, 0)
             }
         }
         
@@ -148,6 +150,7 @@ class Model {
      * @param {HTMLElement} element - The parent list element.
      */
     #handleCloningOfListElements(element) {
+		console.log(element)
         this.#setListBindingMarker(element)
         const firstChild = element.firstElementChild
         if (!firstChild) {
@@ -155,17 +158,21 @@ class Model {
         }
         const listData = this.#getDataToSetOnElement(element, 0)
         for (let i = 0; i < listData.length; i++) {
-            const newNode = firstChild.cloneNode(true)
-            // element.appendChild(newNode)
-            firstChild.parentNode.insertBefore(newNode, firstChild.nextSibling);
-            
-            const nestedLists = element.lastElementChild.querySelectorAll("[data-bind-list]")
+			const newNode = firstChild.cloneNode(true)
+			element.insertBefore(newNode, element.children[i + 1])
+        
+			const nestedLists = newNode.querySelectorAll("[data-bind-list]")
             nestedLists.forEach(nestedList => {
                 const oldBoundPaths = nestedList.dataset[`boundPaths${this.capitalizedName}`]
-                nestedList.dataset[`boundPaths${this.capitalizedName}`] = this.#replaceLastOccurrenceOfNumber(oldBoundPaths, 0, i)                
+                nestedList.dataset[`boundPaths${this.capitalizedName}`] = this.#replaceLastOccurrenceOfNumber(oldBoundPaths, 0, i)
                 this.#handleCloningOfListElements(nestedList)
             })
         }
+		if (!listData) {
+			// console.log(element.parentNode)
+			// element.parentNode.expanded = true
+			// element.remove()
+		}
         firstChild.remove()
     }
 
@@ -184,7 +191,7 @@ class Model {
                     relevantPropertyArrays.push(propertyArrays[j])
                 }
             }
-            
+           
             for (let k = 0; k < relevantPropertyArrays.length; k++) {
                 // account for possible offset in lookup of properties `data-bound-paths-${modelName}` if element also has list binding   
                 let offset = this.#readAndRemoveListBindingMarker(relevantPropertyArrays[k]).listBinding ? 1 : 0
@@ -226,7 +233,9 @@ class Model {
         const boundPaths = element.dataset[`boundPaths${this.capitalizedName}`].split("+")
         const propertyArray = boundPaths[pathIndex].split("/")
         for (let j = 0; j < propertyArray.length; j++) {
-            dataToSet = dataToSet[propertyArray[j]]
+			if (propertyArray[j] !== "") {
+	            dataToSet = dataToSet[propertyArray[j]]	
+			}
             if (!dataToSet) {
                 break
             }
@@ -268,7 +277,6 @@ class Model {
             propertyArray.push(parentPropertyPath)
             propertyArray.reverse()
             propertyPath = propertyArray.join("/")
-            
         }
         return propertyPath
     }
